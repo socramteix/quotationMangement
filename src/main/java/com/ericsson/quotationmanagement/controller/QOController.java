@@ -1,7 +1,6 @@
 package com.ericsson.quotationmanagement.controller;
 
 import com.ericsson.quotationmanagement.model.Stock;
-import com.ericsson.quotationmanagement.model.StockDTO;
 import com.ericsson.quotationmanagement.service.QOService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +16,14 @@ public class QOController {
 
     @ResponseBody
     @GetMapping
-    public List<Stock> get(){
+    public List<Stock> getAllStocks(){
         return qoService.getAllStock();
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/{stockId}")
+    public Stock getStockById(@RequestParam String stockId){
+        return qoService.getStockById(stockId);
     }
 
     @PostMapping
