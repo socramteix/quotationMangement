@@ -42,7 +42,7 @@ public class QOController {
                     .body(createdStock);
         }
         else {
-            throw new StockNotFoundException("Stock "+stock.getStockId()+" not found in stock-manager");
+            throw new StockNotFoundException("Stock "+stock.getStockId()+" not found in stock-manager application");
         }
     }
 
