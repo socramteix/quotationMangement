@@ -18,7 +18,7 @@ public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
-    //@Column(unique=true)
+    @Column(unique=true)
     String stockId;
     @ElementCollection
     @MapKeyColumn (name="name")

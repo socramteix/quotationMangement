@@ -3,8 +3,11 @@ package com.ericsson.quotationmanagement.controller;
 import com.ericsson.quotationmanagement.model.Stock;
 import com.ericsson.quotationmanagement.service.QOService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -16,23 +19,25 @@ public class QOController {
 
     @ResponseBody
     @GetMapping
-    public List<Stock> getAllStocks(){
-        return qoService.getAllStock();
+    public ResponseEntity<List<Stock>> getAllStocks(){
+        return ResponseEntity.ok().body(qoService.getAllStock());
     }
 
     @ResponseBody
     @GetMapping(path = "/{stockId}")
-    public Stock getStockById(@PathVariable(name = "stockId") String stockId){
-        return qoService.getStockById(stockId);
+    public ResponseEntity<Stock> getStockById(@PathVariable(name = "stockId") String stockId){
+        Stock stock = qoService.getStockById(stockId);
+        if(stock != null)
+            return ResponseEntity.ok().body(stock);
+        else
+            return ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public Stock create(@RequestBody Stock stock){
-        return qoService.createStock(stock);
+    public ResponseEntity<Stock> create(@RequestBody Stock stock) throws URISyntaxException {
+        Stock createdStock = qoService.createStock(stock);
+        return ResponseEntity.created(new URI("/stock/"+createdStock.getStockId()))
+                .body(createdStock);
     }
 
-    @PutMapping
-    public Stock update(@RequestBody Stock stock){
-        return qoService.updateStock(stock);
-    }
 }
