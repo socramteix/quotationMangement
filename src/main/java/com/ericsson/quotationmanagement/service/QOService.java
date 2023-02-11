@@ -72,6 +72,15 @@ public class QOService {
         else
             return null;
     }
+
+    /**
+     * fetchAllStocksFromStockManager method brings from
+     * stock-manager application all the stocks stored.
+     * However, this method is Cacheable. This means that
+     * The data is fetched only in case that
+     * there is no data cached
+     * @return List<StockSM> with all stocks from stock-manager
+     */
     @Cacheable("stocks")
     public List<StockSM> fetchAllStocksFromStockManager(){
         logger.info("stock-manager called at "+stockManagerUri);

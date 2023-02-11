@@ -4,6 +4,8 @@ import com.ericsson.quotationmanagement.model.Stock;
 import com.ericsson.quotationmanagement.service.QOService;
 import com.ericsson.quotationmanagement.web.error.StockNotFoundException;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +14,25 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/stock")
 @AllArgsConstructor
 public class QOController {
 
     QOService qoService;
-
+    Logger logger;
     @ResponseBody
-    @GetMapping
+    @GetMapping(path = "/stock")
     public ResponseEntity<List<Stock>> getAllStocks(){
         return ResponseEntity.ok().body(qoService.getAllStock());
     }
 
+    /**
+     * With this resource it is possible to fetch a Stock
+     * by its stockId
+     * @param stockId
+     * @return
+     */
     @ResponseBody
-    @GetMapping(path = "/{stockId}")
+    @GetMapping(path = "/stock/{stockId}")
     public ResponseEntity<Stock> getStockById(@PathVariable(name = "stockId") String stockId){
         Stock stock = qoService.getStockById(stockId);
         if(stock != null)
@@ -34,7 +41,13 @@ public class QOController {
             return ResponseEntity.notFound().build();
     }
 
-    @PostMapping
+    /**
+     * Whith this resource we can create a new Stock
+     * @param stock
+     * @return
+     * @throws URISyntaxException
+     */
+    @PostMapping(path =  "/stock")
     public ResponseEntity<Stock> create(@RequestBody Stock stock) throws URISyntaxException {
         Stock createdStock = qoService.createStock(stock);
         if(createdStock != null){
@@ -46,14 +59,17 @@ public class QOController {
         }
     }
 
-    /*@ResponseBody
-    @GetMapping(path = "/{stockId}")
-    public ResponseEntity<Stock> getStockById(@PathVariable(name = "stockId") String stockId){
-        Stock stock = qoService.getStockById(stockId);
-        if(stock != null)
-            return ResponseEntity.ok().body(stock);
-        else
-            return ResponseEntity.notFound().build();
-    }*/
+    /**
+     * Method that clean cache when stock-Manager
+     * application invokes this andpoint.
+     * CacheEvict cleans 'stocks' cache
+     * @return
+     */
+    @CacheEvict("stocks")
+    @DeleteMapping(path = "/stockcache")
+    public ResponseEntity deleteCache(){
+        logger.info("Cache cleaned");
+        return ResponseEntity.ok().build();
+    }
 
 }
