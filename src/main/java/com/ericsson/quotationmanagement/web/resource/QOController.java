@@ -1,7 +1,8 @@
-package com.ericsson.quotationmanagement.controller;
+package com.ericsson.quotationmanagement.web.resource;
 
 import com.ericsson.quotationmanagement.model.Stock;
 import com.ericsson.quotationmanagement.service.QOService;
+import com.ericsson.quotationmanagement.web.error.StockNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +37,13 @@ public class QOController {
     @PostMapping
     public ResponseEntity<Stock> create(@RequestBody Stock stock) throws URISyntaxException {
         Stock createdStock = qoService.createStock(stock);
-        return ResponseEntity.created(new URI("/stock/"+createdStock.getStockId()))
-                .body(createdStock);
+        if(createdStock != null){
+            return ResponseEntity.created(new URI("/stock/" + createdStock.getStockId()))
+                    .body(createdStock);
+        }
+        else {
+            throw new StockNotFoundException("Stock "+stock.getStockId()+" not found in stock-manager");
+        }
     }
 
 }
