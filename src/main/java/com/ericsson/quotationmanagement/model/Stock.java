@@ -1,17 +1,13 @@
 package com.ericsson.quotationmanagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Data
 @ToString
@@ -22,6 +18,11 @@ public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
+    //@Column(unique=true)
     String stockId;
-    //List<Map<String,String>> quotes;
+    @ElementCollection
+    @MapKeyColumn (name="name")
+    @Column(name="value")
+    @CollectionTable(name="quotes_map", joinColumns=@JoinColumn(name="id"))
+    Map<String, String> quotes = new HashMap<String, String>();
 }

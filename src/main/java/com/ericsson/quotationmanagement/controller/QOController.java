@@ -1,6 +1,7 @@
 package com.ericsson.quotationmanagement.controller;
 
 import com.ericsson.quotationmanagement.model.Stock;
+import com.ericsson.quotationmanagement.model.StockDTO;
 import com.ericsson.quotationmanagement.service.QOService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
