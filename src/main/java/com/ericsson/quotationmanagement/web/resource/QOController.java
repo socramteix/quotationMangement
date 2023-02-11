@@ -46,4 +46,14 @@ public class QOController {
         }
     }
 
+    /*@ResponseBody
+    @GetMapping(path = "/{stockId}")
+    public ResponseEntity<Stock> getStockById(@PathVariable(name = "stockId") String stockId){
+        Stock stock = qoService.getStockById(stockId);
+        if(stock != null)
+            return ResponseEntity.ok().body(stock);
+        else
+            return ResponseEntity.notFound().build();
+    }*/
+
 }

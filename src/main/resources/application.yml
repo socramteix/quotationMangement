@@ -16,3 +16,4 @@ spring:
 
 stock-manager:
     uri: localhost:8080/stock
+    registrationUri: localhost:8080/notification
