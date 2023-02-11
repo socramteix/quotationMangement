@@ -20,6 +20,10 @@ public class QOService {
         return stockRepository.save(stock);
     }
 
+    public Stock updateStock(Stock stock){
+        return stockRepository.save(stock);
+    }
+
     public List<Stock> getAllStock(){
         return stockRepository.findAll();
     }

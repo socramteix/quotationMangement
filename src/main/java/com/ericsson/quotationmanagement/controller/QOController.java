@@ -22,12 +22,17 @@ public class QOController {
 
     @ResponseBody
     @GetMapping(path = "/{stockId}")
-    public Stock getStockById(@RequestParam String stockId){
+    public Stock getStockById(@PathVariable(name = "stockId") String stockId){
         return qoService.getStockById(stockId);
     }
 
     @PostMapping
     public Stock create(@RequestBody Stock stock){
         return qoService.createStock(stock);
+    }
+
+    @PutMapping
+    public Stock update(@RequestBody Stock stock){
+        return qoService.updateStock(stock);
     }
 }
