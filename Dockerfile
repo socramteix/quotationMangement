@@ -8,4 +8,5 @@ COPY . /usr/src/app
 # Compile and package the application to an executable JAR
 RUN mvn package -Pcontainer
 
+#Runs the service
 ENTRYPOINT ["java","-jar","target/quotation-management-0.0.1-SNAPSHOT.jar"]

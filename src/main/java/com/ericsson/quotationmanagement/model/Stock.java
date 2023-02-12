@@ -22,7 +22,7 @@ public class Stock {
     String stockId;
     @ElementCollection
     @MapKeyColumn (name="name")
-    @Column(name="value")
+    @Column(name="value_of_map")
     @CollectionTable(name="quotes_map", joinColumns=@JoinColumn(name="id"))
     Map<String, String> quotes = new HashMap<String, String>();
 }

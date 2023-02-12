@@ -9,10 +9,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  properties:
-    hibernate:
-      show_sql: true
-      format_sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
 
 stock-manager:
     uri: stockmanager:8080/stock

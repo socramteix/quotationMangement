@@ -34,13 +34,17 @@ public class QMService {
             return stockRepository.save(existingStock.get());
         }
         else {
-            if(fetchAllStocksFromStockManager()
-                    .stream().filter(s -> s.getId().equals(stock.getStockId()))
-                    .findFirst().isPresent())
-                return stockRepository.save(stock);
+            if(existsInStockManager(stock))
+                    return stockRepository.save(stock);
             else
                 return null;
         }
+    }
+
+    public boolean existsInStockManager(Stock stock) {
+        return fetchAllStocksFromStockManager()
+                .stream().filter(s -> s.getId().equals(stock.getStockId()))
+                .findFirst().isPresent();
     }
 
     /** fetch all stocks stored in DB
