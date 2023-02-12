@@ -77,7 +77,6 @@ class QMControllerTest {
 
         jsonFile = new ClassPathResource("aapl34.json").getFile();
         userToCreate = Files.readString(jsonFile.toPath());
-
         when(qmService.existsInStockManager(any())).thenReturn(true);
 
         this.mockMvc.perform(post("/stock")
@@ -87,11 +86,12 @@ class QMControllerTest {
                 .andExpect(status().isCreated());
 
         this.mockMvc.perform(get("/stock")
-                .accept(APPLICATION_JSON))
+                        .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
 
         assertThat(this.repository.findAll()).hasSize(2);
+
     }
 
     @Test
@@ -103,6 +103,27 @@ class QMControllerTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldFetchStockByStockId() throws Exception {
+
+        File jsonFile = new ClassPathResource("aapl34.json").getFile();
+        String userToCreate = Files.readString(jsonFile.toPath());
+        when(qmService.existsInStockManager(any())).thenReturn(true);
+
+        this.mockMvc.perform(post("/stock")
+                        .contentType(APPLICATION_JSON)
+                        .content(userToCreate))
+                .andDo(print())
+                .andExpect(status().isCreated());
+
+        this.mockMvc.perform(get("/stock/aapl34")
+                        .accept(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        assertThat(this.repository.findAll()).hasSize(1);
     }
 
 }
