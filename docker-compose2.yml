@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - mysqldb:/var/lib/mysql
+    networks:
+      - inatel
+  sm:
+    container_name: stock-manager
+    image: adautomendes/stock-manager
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - inatel
+  qm:
+    container_name: quotation-management
+    image: quotation-management
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+      - sm
+    ports:
+      - 8081:8081
+    restart: always
+    networks:
+      - inatel
+
+volumes:
+  mysql:
+
+networks:
+  inatel:

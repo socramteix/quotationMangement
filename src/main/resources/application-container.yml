@@ -1,0 +1,19 @@
+server:
+    port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://mysql:3306/bootdb?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+  properties:
+    hibernate:
+      show_sql: true
+      format_sql: true
+
+stock-manager:
+    uri: stockmanager:8080/stock
+    registrationUri: stockmanager:8080/notification

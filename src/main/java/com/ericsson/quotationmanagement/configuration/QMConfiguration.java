@@ -2,29 +2,23 @@ package com.ericsson.quotationmanagement.configuration;
 
 import com.ericsson.quotationmanagement.QuotationManagementApplication;
 import com.ericsson.quotationmanagement.model.StockManagerNotificationRequest;
-import io.netty.handler.ssl.SslContext;
-import io.netty.handler.ssl.SslContextBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 import javax.net.ssl.SSLException;
-import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.List;
 
 @Configuration
 @EnableCaching
-public class QOConfiguration {
+public class QMConfiguration {
 
     @Value("${stock-manager.uri}")
     private String stockManagerUri;
