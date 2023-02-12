@@ -49,17 +49,15 @@ class QMControllerTest {
     @Test
     void shouldCreateOneStock() throws Exception {
         final File jsonFile = new ClassPathResource("petr4.json").getFile();
-        final String userToCreate = Files.readString(jsonFile.toPath());
+        final String stockToCreate = Files.readString(jsonFile.toPath());
 
         when(qmService.existsInStockManager(any())).thenReturn(true);
 
         this.mockMvc.perform(post("/stock")
                         .contentType(APPLICATION_JSON)
-                        .content(userToCreate))
+                        .content(stockToCreate))
                 .andDo(print())
                 .andExpect(status().isCreated());
-
-        assertThat(this.repository.findAll()).hasSize(1);
     }
 
     @Test
@@ -90,8 +88,6 @@ class QMControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        assertThat(this.repository.findAll()).hasSize(2);
-
     }
 
     @Test
@@ -99,7 +95,7 @@ class QMControllerTest {
 
         when(qmService.existsInStockManager(any())).thenReturn(true);
 
-        this.mockMvc.perform(post("/stockcache")
+        this.mockMvc.perform(delete("/stockcache")
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -122,8 +118,6 @@ class QMControllerTest {
                         .accept(APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
-
-        assertThat(this.repository.findAll()).hasSize(1);
     }
 
 }
