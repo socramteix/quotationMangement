@@ -31,7 +31,7 @@ the Stock information from database. Rules:
 - **Docker**
 - JDK 17
 - Maven
-- Postman in readme
+- Postman
 
 ### Pre-requisites to run:
 You will need two images to run the services below which also will be consumed by
