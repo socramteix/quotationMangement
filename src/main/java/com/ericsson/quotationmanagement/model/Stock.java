@@ -20,7 +20,7 @@ public class Stock {
     String id;
     @Column(unique=true)
     String stockId;
-    @ElementCollection()
+    @ElementCollection
     @MapKeyColumn (name="name")
     @Column(name="value_of_map")
     @CollectionTable(name="quotes_map", joinColumns=@JoinColumn(name="id"))

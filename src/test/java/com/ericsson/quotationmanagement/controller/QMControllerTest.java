@@ -1,12 +1,7 @@
 package com.ericsson.quotationmanagement.controller;
 
-import com.ericsson.quotationmanagement.QuotationManagementApplication;
-import com.ericsson.quotationmanagement.configuration.QMConfiguration;
 import com.ericsson.quotationmanagement.repository.StockRepository;
 import com.ericsson.quotationmanagement.service.QMService;
-import org.json.JSONObject;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +16,6 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.File;
 import java.nio.file.Files;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
