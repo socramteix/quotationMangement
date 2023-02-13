@@ -35,7 +35,7 @@ the Stock information from database. Rules:
 
 ### Pre-requisites to run:
 You will need two images to run the services below which also will be consumed by
-  application to be developed (more information will come later).
+  application to be developed.
 - MySQL: https://hub.docker.com/_/mysql
 - stock-manager: https://hub.docker.com/repository/docker/adautomendes/stock-manager
 
