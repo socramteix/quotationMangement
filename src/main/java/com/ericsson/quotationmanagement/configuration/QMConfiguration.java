@@ -46,6 +46,7 @@ public class QMConfiguration {
      * in order to run with system startup
      */
     @Bean
+    @Profile("!test")
     public boolean registerApplicationInStockManager(){
         StockManagerNotificationRequest request = new StockManagerNotificationRequest();
         request.setHost("localhost");
