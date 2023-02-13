@@ -1,16 +1,11 @@
 package com.ericsson.quotationmanagement.controller;
 
-import com.ericsson.quotationmanagement.model.Stock;
 import com.ericsson.quotationmanagement.model.StockSM;
 import com.ericsson.quotationmanagement.repository.StockRepository;
 import com.ericsson.quotationmanagement.service.QMIntegrationService;
 import com.ericsson.quotationmanagement.service.QMService;
-import com.ericsson.quotationmanagement.web.resource.QMController;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,15 +15,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
