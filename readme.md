@@ -12,10 +12,10 @@ the Stock information from database. Rules:
 - Expose one endpoint to accept notification from stock-manager for clean cache ✔️
 - Create unit test for any developed class -> **Since we have limited time
   was chose create test for each resource, since those resources cover the most important points. All endpoints simulating the following scnerios:**
-    - Create a Stock
-    - Get a Stock by stockId
-    - Get all stocks
-    - Delete cache
+    - Create a Stock ✔️
+    - Get a Stock by stockId ✔️
+    - Get all stocks ✔️
+    - Delete cache ✔️
 
 
 ### Technologies, tools and frameworks used in this project:
