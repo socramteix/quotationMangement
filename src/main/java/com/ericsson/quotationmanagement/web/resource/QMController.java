@@ -17,12 +17,12 @@ import java.util.List;
 @AllArgsConstructor
 public class QMController {
 
-    QMService QMService;
+    QMService qmService;
     Logger logger;
     @ResponseBody
     @GetMapping(path = "/stock")
     public ResponseEntity<List<Stock>> getAllStocks(){
-        return ResponseEntity.ok().body(QMService.getAllStock());
+        return ResponseEntity.ok().body(qmService.getAllStock());
     }
 
     /**
@@ -34,7 +34,7 @@ public class QMController {
     @ResponseBody
     @GetMapping(path = "/stock/{stockId}")
     public ResponseEntity<Stock> getStockById(@PathVariable(name = "stockId") String stockId){
-        Stock stock = QMService.getStockById(stockId);
+        Stock stock = qmService.getStockById(stockId);
         if(stock != null)
             return ResponseEntity.ok().body(stock);
         else
@@ -49,7 +49,7 @@ public class QMController {
      */
     @PostMapping(path =  "/stock")
     public ResponseEntity<Stock> create(@RequestBody Stock stock) throws URISyntaxException {
-        Stock createdStock = QMService.createStock(stock);
+        Stock createdStock = qmService.createStock(stock);
         if(createdStock != null){
             return ResponseEntity.created(new URI("/stock/" + createdStock.getStockId()))
                     .body(createdStock);
