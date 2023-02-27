@@ -1,8 +1,6 @@
 # Quotation Management
-This is a spring-boot application as part of the
-selective process to be part of Ericsson team.
- 
-The main objective of this application is store/get
+# Quotation Management
+This is a spring-boot based model application. The main objective of this application is store/get
 the Stock information from database. Rules:
 - Should be developed using Spring Boot. ✔️
 - Create a Stock Quote; ✔️
@@ -10,8 +8,7 @@ the Stock information from database. Rules:
 - Read all Stock QuotesValidate stockId in another application called "stock-manager" before save in DB ✔️
 - Implement cache to be checked before validade id in stock-manager ✔️
 - Expose one endpoint to accept notification from stock-manager for clean cache ✔️
-- Create unit test for any developed class -> **Since we have limited time
-  was chose create test for each resource, since those resources cover the most important points. All endpoints simulating the following scnerios:**
+- Create unit test for any resource needed
     - Create a Stock ✔️
     - Get a Stock by stockId ✔️
     - Get all stocks ✔️
