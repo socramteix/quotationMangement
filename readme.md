@@ -1,5 +1,4 @@
 # Quotation Management
-# Quotation Management
 This is a spring-boot based model application. The main objective of this application is store/get
 the Stock information from database. Rules:
 - Should be developed using Spring Boot. ✔️
